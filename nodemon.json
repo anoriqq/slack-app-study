@@ -1,0 +1,5 @@
+{
+  "watch": ["src"],
+  "ext": "ts",
+  "exec": "DEBUG=express:application,info ts-node ./src/index.ts"
+}

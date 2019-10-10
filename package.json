@@ -1,0 +1,31 @@
+{
+  "name": "slack-karte",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build:dev": "yarn run tsc",
+    "debug": "nodemon --config ./nodemon.json",
+    "start": "node ./dist/index.js"
+  },
+  "dependencies": {
+    "@slack/web-api": "^5.2.1",
+    "@types/debug": "^4.1.5",
+    "@types/express": "^4.17.1",
+    "@types/morgan": "^1.7.37",
+    "@types/request": "^2.48.3",
+    "@types/request-promise-native": "^1.0.17",
+    "debug": "^4.1.1",
+    "express": "^4.17.1",
+    "ky": "^0.15.0",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.19.3",
+    "pug": "^2.0.4",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.7",
+    "supports-color": "^7.1.0",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.4"
+  }
+}
