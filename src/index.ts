@@ -1,6 +1,5 @@
 import express from 'express';
 import debug from 'debug';
-import {notFoundError} from './middleware';
 
 const app = express();
 const log = debug('app:log');
@@ -14,13 +13,16 @@ app.set('views', `${process.cwd()}/src/views`);
 
 // Middleware setup
 import morgan from 'morgan';
+import helmet from 'helmet';
 app.use(morgan('dev', {stream: {write: msg => requestLogger(msg.trimEnd())}}));
+app.use(helmet());
 
 // Router setup
 import {router} from './routes';
 app.use(router);
 
 // Error handler setup
+import {notFoundError} from './middleware';
 app.use(notFoundError);
 
 // Create and listen server
