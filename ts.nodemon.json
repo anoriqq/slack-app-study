@@ -7,9 +7,11 @@
   "env": {
     "NODE_ENV": "development",
     "DEBUG": "express:application,request,app:*",
-    "PORT": "8080"
+    "PORT": "8000"
   },
-  "exec": "ts-node ./src/index.ts",
+  "execMap": {
+    "ts": "node -r ts-node/register"
+  },
   "ext": "js,json,ts",
   "verbose": true
 }

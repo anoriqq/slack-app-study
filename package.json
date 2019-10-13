@@ -6,8 +6,10 @@
   "private": true,
   "scripts": {
     "build:dev": "yarn run tsc",
-    "debug": "nodemon --config ./nodemon.json",
-    "start": "node ./dist/index.js"
+    "debug:dev": "nodemon --inspect --config ./nodemon.json",
+    "debug:ts": "nodemon --inspect-brk=9229 --config ./ts.nodemon.json src/index.ts",
+    "start": "node ./dist/index.js",
+    "test": "echo 'run test'"
   },
   "dependencies": {
     "@slack/web-api": "^5.2.1",
