@@ -12,10 +12,10 @@ app.set('view engine', 'pug');
 app.set('views', `${process.cwd()}/src/views`);
 
 // Middleware setup
-import morgan from 'morgan';
 import helmet from 'helmet';
-app.use(morgan('dev', {stream: {write: msg => requestLogger(msg.trimEnd())}}));
+import morgan from 'morgan';
 app.use(helmet());
+app.use(morgan('dev', {stream: {write: msg => requestLogger(msg.trimEnd())}}));
 
 // Router setup
 import {router} from './routes';

@@ -1,8 +1,4 @@
-// import {WebClient} from '@slack/web-api';
-// import ky from 'ky';
-// import request from 'request-promise-native';
 import debug from 'debug';
-import {AxiosResponse} from 'axios';
 
 declare module 'axios' {
   export interface AxiosResponse<T = any> extends Promise<T> {}
@@ -23,7 +19,7 @@ export function getAuthorizeUrl(): string {
 
 import axios from 'axios';
 export async function authorizeSlackAccess(code: string) {
-  const url = 'https://slack.com/api/oauth.access';
+  const methodUrl = 'https://slack.com/api/oauth.access';
   const client_secret = '6904db9966b9debf2af772efcaec118a';
   const data = {
     client_id: SLACK_CLIENT_ID,
@@ -31,26 +27,17 @@ export async function authorizeSlackAccess(code: string) {
     code,
     redirect_uri: SLACK_OAUTH_REDIRECT_URI,
   };
-  log(data);
-  const res = await _timeoutPost(url, data, 10000);
+  const requestUrl = createRequestUel(methodUrl, data);
+  log('requestUrl=>', requestUrl);
+  const res = await axios.post(requestUrl);
   log(res.data);
   return res.data;
 }
 
-function _timeoutPost(
-  url: string,
-  data: object,
-  ms: number,
-): Promise<AxiosResponse> {
-  return new Promise<AxiosResponse>((resolve, reject) => {
-    setTimeout(async () => {
-      const config = {
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      };
-      const res = await axios.post(url, data, config).catch(err => {
-        return reject(err);
-      });
-      return resolve(res);
-    }, ms);
+function createRequestUel(methodUrl: string, obj: any): string {
+  const str = Object.keys(obj).map(key => {
+    return `${key}=${obj[key]}`;
   });
+  const queryString = str.join('&');
+  return `${methodUrl}?${queryString}`;
 }

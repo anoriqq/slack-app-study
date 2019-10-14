@@ -2,7 +2,9 @@
   "watch": ["src"],
   "ignore": [
     ".git",
-    "node_modules/**/node_modules"
+    "node_modules/**/node_modules",
+    "dist",
+    ".vscode"
   ],
   "env": {
     "NODE_ENV": "development",
