@@ -6,7 +6,7 @@ declare module 'axios' {
 
 const log = debug('app:slack:logic');
 
-const SLACK_CLIENT_ID = '353190391027.786804600948';
+const SLACK_CLIENT_ID = '';
 const SLACK_OAUTH_REDIRECT_URI = 'http://localhost:8080/slack/authorize';
 
 export function getAuthorizeUrl(): string {
@@ -20,7 +20,7 @@ export function getAuthorizeUrl(): string {
 import axios from 'axios';
 export async function authorizeSlackAccess(code: string) {
   const methodUrl = 'https://slack.com/api/oauth.access';
-  const client_secret = '6904db9966b9debf2af772efcaec118a';
+  const client_secret = '';
   const data = {
     client_id: SLACK_CLIENT_ID,
     client_secret,
